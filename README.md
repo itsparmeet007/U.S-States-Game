@@ -47,8 +47,9 @@ Run the game:
 python main.py
 
 📸 Example Gameplay
+<img width="902" height="478" alt="image" src="https://github.com/user-attachments/assets/318c91f9-d7fe-4e75-b087-9da6c4cbd9b2" />
 <img width="922" height="636" alt="image" src="https://github.com/user-attachments/assets/86d3a2b8-2ca2-4adb-b2a1-1f133e3412d6" />
-
+<img width="547" height="445" alt="image" src="https://github.com/user-attachments/assets/10a8c9c0-b6ef-440d-be75-8dc48d8a6006" />
 
 (You can add a screenshot/gif of your game here later for better presentation.)
 
