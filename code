@@ -1,0 +1,57 @@
+import turtle
+import pandas
+import time
+
+screen = turtle.Screen()
+screen.title("U.S. States Game")
+image ="blank_states_img.gif"
+screen.addshape(image)
+turtle.shape(image)
+
+level = screen.textinput(title =" Select the level?",prompt="Enter the level ?").title()
+
+if level == "Easy":
+    allowed_time = 600   # 10 minutes
+elif level == "Medium":
+    allowed_time = 300   # 5 minutes
+elif level == "Hard":
+    allowed_time = 180   # 3 minutes
+else:
+    allowed_time = 600   # default = Easy
+
+start_time =time.time()
+
+data = pandas.read_csv("50_states.csv")
+all_state = data.state.to_list()
+guessed_states = []
+
+while len(guessed_states) < 50:
+    elapsed_time = time.time() - start_time
+    remaining_time = int(allowed_time - elapsed_time)
+
+    if remaining_time <= 0:
+        print(f"Time's up You guesed {len(guessed_states)}/50 states!")
+        break
+
+    mins, secs = divmod(remaining_time, 60)
+    timer_text = f"{mins}:{secs:02d}"
+
+    answer_state = screen.textinput(title=f"{len(guessed_states)}/50 | Time Left ={remaining_time} ", prompt="What is state?").title()
+    print(answer_state)
+
+    if answer_state == "Exit":
+        title = f"{len(guessed_states)} States Game Ended in {remaining_time} seconds"
+        print(f"Record :{title}")
+        break
+
+    if answer_state in all_state and answer_state not in guessed_states:
+        guessed_states.append(answer_state)
+        t = turtle.Turtle()
+        t.hideturtle()
+        t.penup()
+        state_data = data[data.state == answer_state]
+        t.goto(state_data.x.item(), state_data.y.item())
+        t.write(answer_state)
+
+
+screen.exitonclick()
